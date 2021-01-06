@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.mars.MainActivity;
 import com.example.mars.R;
 import com.example.mars.entities.User;
 import com.example.mars.viewmodels.AuthViewModel;
@@ -108,19 +107,19 @@ public class AuthActivity extends AppCompatActivity {
 
     private void successToastMessage(String name) {
         Toast.makeText(this,
-                R.string.welcome + " " + name + "!\n"
-                + R.string.success_create_account,
+                getString(R.string.welcome) + " " + name + "!\n"
+                + getString(R.string.success_create_account),
                 Toast.LENGTH_LONG).show();
     }
 
     private void errorToastMessage() {
         Toast.makeText(this,
-                R.string.error_create_account,
+                getString(R.string.error_create_account),
                 Toast.LENGTH_LONG).show();
     }
 
     private void goToMainActivity(User user) {
-        Intent intent = new Intent(AuthActivity.this, MainActivity.class);
+        Intent intent = new Intent(AuthActivity.this, PostsActivity.class);
         intent.putExtra(USER, user);
         startActivity(intent);
         finish();

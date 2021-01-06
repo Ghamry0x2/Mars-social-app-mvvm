@@ -20,4 +20,13 @@ public class User implements Serializable {
         this.name = name;
         this.email = email;
     }
+
+    public String toString() {
+        return "id: " + uid
+            + " name: " + name
+            + " email: " + email
+            + " isAuthenticated: " + isAuthenticated
+            + " isNew: " + isNew
+            + " isCreated: " + isCreated;
+    }
 }

@@ -2,9 +2,10 @@ package com.example.mars.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.example.mars.MainActivity;
 import com.example.mars.entities.User;
+import com.example.mars.utils.Constants;
 import com.example.mars.viewmodels.SplashViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class SplashActivity extends AppCompatActivity {
     private void checkIfUserIsAuthenticated() {
         splashViewModel.checkIfUserIsAuthenticated();
         splashViewModel.isUserAuthenticatedLiveData.observe(this, user -> {
+            Log.d(Constants.TAG, user.toString());
             if (!user.isAuthenticated) {
                 goToAuthInActivity();
                 finish();
@@ -51,7 +53,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void goToMainActivity(User user) {
-        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        Intent intent = new Intent(SplashActivity.this, PostsActivity.class);
         intent.putExtra(USER, user);
         startActivity(intent);
     }
