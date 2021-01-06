@@ -2,11 +2,20 @@ package com.example.mars.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.mars.R;
 import com.example.mars.entities.User;
+import com.example.mars.utils.Constants;
 import com.example.mars.viewmodels.AuthViewModel;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -15,6 +24,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,19 +37,47 @@ import static com.example.mars.utils.Helpers.logErrorMessage;
 public class AuthActivity extends AppCompatActivity {
     private AuthViewModel authViewModel;
     private GoogleSignInClient googleSignInClient;
+    private CallbackManager mCallbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-        initSignInButton();
+        initSignInButtons();
         initAuthViewModel();
         initGoogleSignInClient();
+        initFacebookSdk();
     }
 
-    private void initSignInButton() {
+    private void initSignInButtons() {
         SignInButton googleSignInButton = findViewById(R.id.google_sign_in_button);
-        googleSignInButton.setOnClickListener(v -> signIn());
+        googleSignInButton.setOnClickListener(v -> signInGoogle());
+
+        LoginButton loginButton = findViewById(R.id.facebook_sign_in_button);
+
+        loginButton.setReadPermissions("email", "public_profile");
+        mCallbackManager = CallbackManager.Factory.create();
+        loginButton.registerCallback(mCallbackManager, signInFb());
+    }
+
+    private FacebookCallback<LoginResult> signInFb() {
+        return new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(Constants.TAG, "facebook:onSuccess:" + loginResult);
+                getFacebookAuthCredential(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+                logErrorMessage(e.getMessage());
+                errorToastMessage();
+            }
+        };
     }
 
     private void initAuthViewModel() {
@@ -56,7 +94,11 @@ public class AuthActivity extends AppCompatActivity {
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
     }
 
-    private void signIn() {
+    private void initFacebookSdk() {
+        FacebookSdk.sdkInitialize(AuthActivity.this);
+    }
+
+    private void signInGoogle() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -75,7 +117,16 @@ public class AuthActivity extends AppCompatActivity {
                 logErrorMessage(e.getMessage());
                 errorToastMessage();
             }
+        } else {
+            mCallbackManager.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void getFacebookAuthCredential(AccessToken token) {
+        Log.d(Constants.TAG, "handleFacebookAccessToken:" + token);
+
+        AuthCredential fbAuthCredential = FacebookAuthProvider.getCredential(token.getToken());
+        signInWithFacebookAuthCredential(fbAuthCredential);
     }
 
     private void getGoogleAuthCredential(GoogleSignInAccount googleSignInAccount) {
@@ -86,6 +137,17 @@ public class AuthActivity extends AppCompatActivity {
 
     private void signInWithGoogleAuthCredential(AuthCredential googleAuthCredential) {
         authViewModel.signInWithGoogle(googleAuthCredential);
+        authViewModel.authenticatedUserLiveData.observe(this, authenticatedUser -> {
+            if (authenticatedUser.isNew) {
+                createNewUser(authenticatedUser);
+            } else {
+                goToMainActivity(authenticatedUser);
+            }
+        });
+    }
+
+    private void signInWithFacebookAuthCredential(AuthCredential facebookAuthCredential) {
+        authViewModel.signInWithFacebook(facebookAuthCredential);
         authViewModel.authenticatedUserLiveData.observe(this, authenticatedUser -> {
             if (authenticatedUser.isNew) {
                 createNewUser(authenticatedUser);

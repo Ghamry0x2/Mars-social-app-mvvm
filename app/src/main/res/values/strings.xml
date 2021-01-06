@@ -3,4 +3,7 @@
     <string name="welcome">Welcome</string>
     <string name="success_create_account">Your account was successfully created.</string>
     <string name="error_create_account">Something went wrong!</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="facebook_app_id">4782546085154038</string>
+    <string name="fb_login_protocol_scheme">fb4782546085154038</string>
 </resources>

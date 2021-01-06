@@ -10,6 +10,7 @@ import com.example.mars.viewmodels.SplashViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+
 import static com.example.mars.utils.Constants.USER;
 
 public class SplashActivity extends AppCompatActivity {
