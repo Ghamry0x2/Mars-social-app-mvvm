@@ -38,8 +38,8 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void goToAuthInActivity() {
-//        Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
+        startActivity(intent);
     }
 
     private void getUserFromDatabase(String uid) {
