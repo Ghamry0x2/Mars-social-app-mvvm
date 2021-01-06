@@ -3,6 +3,7 @@ package com.example.mars.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.mars.R;
@@ -14,8 +15,8 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -26,6 +27,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.Arrays;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -53,11 +56,8 @@ public class AuthActivity extends AppCompatActivity {
         SignInButton googleSignInButton = findViewById(R.id.google_sign_in_button);
         googleSignInButton.setOnClickListener(v -> signInGoogle());
 
-        LoginButton loginButton = findViewById(R.id.facebook_sign_in_button);
-
-        loginButton.setReadPermissions("email", "public_profile");
-        mCallbackManager = CallbackManager.Factory.create();
-        loginButton.registerCallback(mCallbackManager, signInFb());
+        Button facebookSignInButton = findViewById(R.id.facebook_sign_in_button);
+        facebookSignInButton.setOnClickListener(v -> signInFacebook());
     }
 
     private FacebookCallback<LoginResult> signInFb() {
@@ -101,6 +101,13 @@ public class AuthActivity extends AppCompatActivity {
     private void signInGoogle() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void signInFacebook() {
+        LoginManager.getInstance().logInWithReadPermissions(AuthActivity.this, Arrays.asList("email", "public_profile"));
+
+        mCallbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(mCallbackManager, signInFb());
     }
 
     @Override
@@ -169,7 +176,7 @@ public class AuthActivity extends AppCompatActivity {
 
     private void successToastMessage(String name) {
         Toast.makeText(this,
-                getString(R.string.welcome) + " " + name + "!\n"
+                getString(R.string.hello) + " " + name + "!\n"
                 + getString(R.string.success_create_account),
                 Toast.LENGTH_LONG).show();
     }

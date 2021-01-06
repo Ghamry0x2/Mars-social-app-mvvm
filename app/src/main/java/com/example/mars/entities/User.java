@@ -8,6 +8,7 @@ public class User implements Serializable {
     public String name;
     @SuppressWarnings("WeakerAccess")
     public String email;
+    public String avatar;
     @Exclude
     public boolean isAuthenticated;
     @Exclude
@@ -15,16 +16,18 @@ public class User implements Serializable {
 
     public User() {}
 
-    public User(String uid, String name, String email) {
+    public User(String uid, String name, String email, String avatar) {
         this.uid = uid;
         this.name = name;
         this.email = email;
+        this.avatar = avatar;
     }
 
     public String toString() {
         return "id: " + uid
             + " name: " + name
             + " email: " + email
+            + " avatar: " + avatar
             + " isAuthenticated: " + isAuthenticated
             + " isNew: " + isNew
             + " isCreated: " + isCreated;

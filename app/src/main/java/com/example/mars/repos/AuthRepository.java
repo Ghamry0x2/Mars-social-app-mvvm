@@ -31,7 +31,8 @@ class AuthRepository {
                     String uid = firebaseUser.getUid();
                     String name = firebaseUser.getDisplayName();
                     String email = firebaseUser.getEmail();
-                    User user = new User(uid, name, email);
+                    String avatar = firebaseUser.getPhotoUrl().toString();
+                    User user = new User(uid, name, email, avatar);
                     user.isNew = isNewUser;
                     authenticatedUserMutableLiveData.setValue(user);
                 }
@@ -53,7 +54,8 @@ class AuthRepository {
                     String uid = firebaseUser.getUid();
                     String name = firebaseUser.getDisplayName();
                     String email = firebaseUser.getEmail();
-                    User user = new User(uid, name, email);
+                    String avatar = firebaseUser.getPhotoUrl().toString();
+                    User user = new User(uid, name, email, avatar);
                     user.isNew = isNewUser;
                     authenticatedUserMutableLiveData.setValue(user);
                 }
