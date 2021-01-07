@@ -11,7 +11,7 @@ import android.os.Build;
 import android.util.Log;
 
 import com.example.mars.R;
-import com.example.mars.views.PostsActivity;
+import com.example.mars.views.SplashActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -67,7 +67,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void sendNotification(String messageTitle, String messageBody) {
-        Intent intent = new Intent(this, PostsActivity.class);
+        Intent intent = new Intent(this, SplashActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 , intent,
                 PendingIntent.FLAG_ONE_SHOT);
