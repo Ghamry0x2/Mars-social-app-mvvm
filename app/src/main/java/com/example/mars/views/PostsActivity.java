@@ -26,7 +26,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,9 +63,9 @@ public class PostsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Adding divider between posts
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                linearLayoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+//                linearLayoutManager.getOrientation());
+//        recyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     private void loadPosts() {
@@ -138,6 +137,9 @@ public class PostsActivity extends AppCompatActivity {
                 authViewModel.signOut();
                 startActivity(new Intent(this, AuthActivity.class));
                 finish();
+                return true;
+            case R.id.refresh_feeds_menu:
+                postsViewModel.getAllPosts();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

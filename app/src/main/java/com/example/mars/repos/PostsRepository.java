@@ -10,6 +10,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,14 @@ public class PostsRepository {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         list.add(document.toObject(Post.class));
                     }
+
+                    Collections.sort(list, new Comparator<Post>() {
+                        @Override
+                        public int compare(Post p1, Post p2) {
+                            return new Long(p2.createdAt).compareTo(p1.createdAt);
+                        }
+                    });
+
                     posts.setValue(list);
                 } else {
                     logErrorMessage(task.getException().getMessage());

@@ -1,10 +1,13 @@
 package com.example.mars.entities;
 
+import com.example.mars.utils.Helpers;
+
 import java.io.Serializable;
 
-public class Post implements Serializable {
+public class Post implements Serializable, Comparable<Post> {
     public String title;
     public String desc;
+    public long createdAt;
     @SuppressWarnings("WeakerAccess")
     public String authorId;
     public String authorName;
@@ -18,14 +21,16 @@ public class Post implements Serializable {
         this.authorId = authorId;
         this.authorName = authorName;
         this.authorAvatar = authorAvatar;
+        this.createdAt = System.currentTimeMillis();
     }
 
-    public Post(String title, String desc, String authorId, String authorName, String authorAvatar) {
+    public Post(String title, String desc, String authorId, String authorName, String authorAvatar, long createdAt) {
         this.title = title;
         this.desc = desc;
         this.authorId = authorId;
         this.authorName = authorName;
         this.authorAvatar = authorAvatar;
+        this.createdAt = createdAt;
     }
 
     public void setAuthor(User user) {
@@ -34,11 +39,24 @@ public class Post implements Serializable {
         this.authorAvatar = user.avatar;
     }
 
+    public String formattedCreationDate() {
+        return Helpers.getTimeAgo(this.createdAt);
+    }
+
     public String toString() {
         return "title: " + title
                 + " desc: " + desc
                 + " authorId: " + authorId
                 + " authorName: " + authorName
-                + " authorAvatar: " + authorAvatar;
+                + " authorAvatar: " + authorAvatar
+                + " createdAt: " + createdAt;
+    }
+
+    @Override
+    public int compareTo(Post p) {
+        if (this.formattedCreationDate() == null || p.formattedCreationDate() == null) {
+            return 0;
+        }
+        return new Long(this.createdAt).compareTo(p.createdAt);
     }
 }

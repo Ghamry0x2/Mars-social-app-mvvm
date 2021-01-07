@@ -5,8 +5,11 @@
     <string name="hello">Hello</string>
     <string name="success_create_account">Your account was successfully created.</string>
     <string name="error_create_account">Something went wrong!</string>
-    <string name="sign_out">Sign Out</string>
     <string name="sign_in_fb">Sign in with Facebook</string>
+
+    <!--  Menus  -->
+    <string name="refresh_feeds">Refresh Feeds</string>
+    <string name="sign_out">Sign Out</string>
 
 
     <!--  Posts  -->
