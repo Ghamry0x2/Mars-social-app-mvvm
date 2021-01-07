@@ -20,6 +20,7 @@ import com.example.mars.utils.Constants;
 import com.example.mars.viewmodels.AuthViewModel;
 import com.example.mars.viewmodels.PostsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -55,6 +56,11 @@ public class PostsActivity extends AppCompatActivity {
         initRecyclerView();
 
         loadPosts();
+        configureFCM();
+    }
+
+    private void configureFCM() {
+        FirebaseMessaging.getInstance().subscribeToTopic("posts");
     }
 
     private void initRecyclerView() {

@@ -28,4 +28,7 @@
     <!--  Signing  -->
     <string name="facebook_app_id">4782546085154038</string>
     <string name="fb_login_protocol_scheme">fb4782546085154038</string>
+
+    <!--  Notifications  -->
+    <string name="default_notification_channel_id">NOTIFICATION_CHANNEL</string>
 </resources>
