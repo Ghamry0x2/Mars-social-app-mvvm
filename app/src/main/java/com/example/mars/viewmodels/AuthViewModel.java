@@ -31,4 +31,8 @@ public class AuthViewModel extends AndroidViewModel {
     public void createUser(User authenticatedUser) {
         createdUserLiveData = authRepository.createUserInFirestoreIfNotExists(authenticatedUser);
     }
+
+    public void signOut() {
+        authRepository.signOut();
+    }
 }

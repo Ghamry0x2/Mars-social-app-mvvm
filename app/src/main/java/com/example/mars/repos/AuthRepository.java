@@ -90,4 +90,8 @@ class AuthRepository {
         });
         return newUserMutableLiveData;
     }
+
+    public void signOut() {
+        firebaseAuth.signOut();
+    }
 }

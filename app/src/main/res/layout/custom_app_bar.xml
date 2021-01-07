@@ -1,0 +1,18 @@
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/customToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@color/colorFacebook"
+    android:gravity="center"
+    android:elevation="4dp"
+    android:text="@string/feeds"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+</androidx.appcompat.widget.Toolbar>
+
+
