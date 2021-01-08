@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="0dp"
@@ -15,6 +16,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -23,19 +25,19 @@
             android:layout_height="42dp"
             android:id="@+id/authorAvatar" />
 
-
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/authorName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
                     android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -45,6 +47,18 @@
                     android:layout_marginTop="4dp" />
 
             </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/menuBtn"
+                android:layout_width="30dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:text="&#8942;"
+                android:textColor="@color/colorPrimaryDark"
+                android:textAppearance="?android:textAppearanceLarge"
+                />
 
         </LinearLayout>
 

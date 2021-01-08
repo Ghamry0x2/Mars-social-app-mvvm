@@ -1,10 +1,13 @@
 package com.example.mars.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,10 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
     private List<Post> posts;
     private LayoutInflater mInflater;
+    private Context context;
 
     public PostsAdapter(Context context, List<Post> data) {
         this.mInflater = LayoutInflater.from(context);
         this.posts = data;
+        this.context = context;
     }
 
     // inflates the row layout from xml when needed
@@ -35,16 +40,38 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Post post = posts.get(position);
+
         holder.authorName.setText(post.authorName);
         holder.title.setText(post.title);
         holder.desc.setText(post.desc);
         holder.createdAt.setText(post.formattedCreationDate());
 
-        Glide.with(mInflater.getContext())
+        Glide.with(context)
                 .load(post.authorAvatar)
                 .centerCrop()
                 .circleCrop()
                 .into(holder.authorAvatar);
+
+        holder.menuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("MarsTag", "onClick: ");
+                PopupMenu popupMenu = new PopupMenu(context, holder.menuBtn);
+                popupMenu.inflate(R.menu.post_options_menu);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.menu_item_read:
+                                break;
+                        }
+
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
     }
 
     // total number of rows
@@ -60,6 +87,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         TextView title;
         TextView desc;
         TextView createdAt;
+        TextView menuBtn;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -68,6 +96,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             title = itemView.findViewById(R.id.title);
             desc = itemView.findViewById(R.id.desc);
             createdAt = itemView.findViewById(R.id.createdAt);
+            menuBtn = itemView.findViewById(R.id.menuBtn);
         }
     }
 }

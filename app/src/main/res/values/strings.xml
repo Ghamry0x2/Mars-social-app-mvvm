@@ -11,7 +11,6 @@
     <string name="refresh_feeds">Refresh Feeds</string>
     <string name="sign_out">Sign Out</string>
 
-
     <!--  Posts  -->
     <string name="feeds">My feed</string>
 
@@ -24,6 +23,15 @@
     <string name="add_post_title_err">Post title cant be empty</string>
     <string name="add_post_desc_err">Post description cant be empty</string>
     <string name="add_post_success">Post added successfully!</string>
+
+    <!--  STT  -->
+    <string name="speak">Speak!</string>
+    <string name="speak_title">What\'s your post title?</string>
+    <string name="speak_desc">What\'s your post description?</string>
+    <string name="speak_finish">Great! you can add your post now!</string>
+
+    <!--  Post tts  -->
+    <string name="read_post">Read Post</string>
 
     <!--  Signing  -->
     <string name="facebook_app_id">4782546085154038</string>
