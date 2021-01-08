@@ -1,6 +1,7 @@
 package com.example.mars.repos;
 
 import com.example.mars.entities.User;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -92,6 +93,7 @@ class AuthRepository {
     }
 
     public void signOut() {
+        LoginManager.getInstance().logOut();
         firebaseAuth.signOut();
     }
 }

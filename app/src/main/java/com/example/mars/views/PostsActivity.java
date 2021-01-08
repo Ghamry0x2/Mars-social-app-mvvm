@@ -3,7 +3,6 @@ package com.example.mars.views;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +15,6 @@ import com.example.mars.R;
 import com.example.mars.adapters.PostsAdapter;
 import com.example.mars.entities.Post;
 import com.example.mars.entities.User;
-import com.example.mars.utils.Constants;
 import com.example.mars.viewmodels.AuthViewModel;
 import com.example.mars.viewmodels.PostsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -79,7 +77,6 @@ public class PostsActivity extends AppCompatActivity {
         postsViewModel.postsLiveData.observe(this, data -> {
             postsAdapter = new PostsAdapter(this, data);
             recyclerView.setAdapter(postsAdapter);
-            Log.d(Constants.TAG + "hi", data.toString());
         });
     }
 
