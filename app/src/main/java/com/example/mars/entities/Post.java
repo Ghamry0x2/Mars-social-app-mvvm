@@ -43,6 +43,12 @@ public class Post implements Serializable, Comparable<Post> {
         return Helpers.getTimeAgo(this.createdAt);
     }
 
+    public String formattedTTS() {
+        return this.authorName + " added this post " + this.formattedCreationDate()
+                + "\nHe said: " + this.title
+                + "\nHe also added: " + this.desc;
+    }
+
     public String toString() {
         return "title: " + title
                 + " desc: " + desc
