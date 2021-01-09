@@ -163,7 +163,9 @@ public class AddPostActivity extends AppCompatActivity {
         addPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtTitle.getText().toString().trim().length() == 0) {
+                if(txtTitle.getText().toString().trim().length() == 0 && txtDesc.getText().toString().trim().length() == 0) {
+                    Toast.makeText(AddPostActivity.this, R.string.add_post_err, Toast.LENGTH_SHORT).show();
+                } else if(txtTitle.getText().toString().trim().length() == 0) {
                     Toast.makeText(AddPostActivity.this, R.string.add_post_title_err, Toast.LENGTH_SHORT).show();
                 } else if(txtDesc.getText().toString().trim().length() == 0) {
                     Toast.makeText(AddPostActivity.this, R.string.add_post_desc_err, Toast.LENGTH_SHORT).show();

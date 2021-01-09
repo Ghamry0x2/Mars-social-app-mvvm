@@ -20,6 +20,7 @@
     <string name="add_post_desc">Post description</string>
     <string name="add_post_btn">Add Post</string>
 
+    <string name="add_post_err">Post title and description cant be empty</string>
     <string name="add_post_title_err">Post title cant be empty</string>
     <string name="add_post_desc_err">Post description cant be empty</string>
     <string name="add_post_success">Post added successfully!</string>
