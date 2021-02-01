@@ -45,7 +45,7 @@ As you can see, we have ViewModels and a LiveData and we need to make them work 
 
 The code is divided into seven main parts:
 
-![Code Structure](./docs/images/code_structure_2.jpg)
+![Code Structure](./docs/images/code_structure_2.JPG)
 
 **1. Adapters:** responsible for binding the LiveData to the recycler view items.
 **2. Entities:** defines the structure of the objects used within the system.
@@ -61,19 +61,19 @@ The code is divided into seven main parts:
 1. Firebase Authentication Service
 • Google Login.
 • Facebook Login.
-![Firebase Authentication Service](./docs/images/auth.jpg)
+![Firebase Authentication Service](./docs/images/auth.JPG)
 <br />
 
 2. Firebase Cloud Firestore (Database)
 • Table for users.
 • Table for posts.
-![Firebase Cloud Firestore (Database)](./docs/images/db.jpg)
+![Firebase Cloud Firestore (Database)](./docs/images/db.JPG)
 <br />
 
 1. Firebase Cloud Messaging (FCM)
 • Send to all users (Broadcast).
 • Send on a certain topic (Initially all users are subscribed to “posts” topic).
-![FCM](./docs/images/fcm.jpg)
+![FCM](./docs/images/fcm.JPG)
 <br />
 
 1. Facebook Developers Console
@@ -83,7 +83,7 @@ We’ve got 3 test users:
 • klara_rwsmrmw_kardic@tfbnw.net
 All have the same password which is “Vorx!123”.
 *(Kindly be noted that the app is in-development mode, so we can only use Facebook authentication through the registered devices on console).*
-![FB Test Users](./docs/images/fb_test_users.jpg)
+![FB Test Users](./docs/images/fb_test_users.JPG)
 <br />
 
 ## App Flow and Corner Cases
