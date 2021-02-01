@@ -89,6 +89,7 @@ We’ve got 3 test users:
    - klara_rwsmrmw_kardic@tfbnw.net
   
 All have the same password which is “Vorx!123”.
+
 *(Kindly be noted that the app is in-development mode, so we can only use Facebook authentication through the registered devices on console).*
 
 ![FB Test Users](./docs/images/fb_test_users.JPG)
