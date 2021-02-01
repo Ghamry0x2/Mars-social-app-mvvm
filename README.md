@@ -48,41 +48,49 @@ The code is divided into seven main parts:
 ![Code Structure](./docs/images/code_structure_2.JPG)
 
 **1. Adapters:** responsible for binding the LiveData to the recycler view items.
+
 **2. Entities:** defines the structure of the objects used within the system.
+
 **3. Repositories:** holds the LiveData and responsible for the connection with the cloud firestore.
+
 **4. Services:** represents the services used inside the system as the push notifications service.
+
 **5. Utils:** contains all the utilities needed by the app, such as all the constant values and all the helper functions used in the app.
+
 **6. ViewModels:** exposes the data to the Views and maintain some state for the View.
+
 **7. Views:** the attached part with the XML files, which is aware of the activity lifecycle and takes actions based on it. It also communicates with and triggers the ViewModels in order to get the needed data.
 <br/>
 
 ### Third Parties
 
 1. Firebase Authentication Service
-• Google Login.
-• Facebook Login.
+   - Google Login.
+   - Facebook Login.
 ![Firebase Authentication Service](./docs/images/auth.JPG)
 <br />
 
 2. Firebase Cloud Firestore (Database)
-• Table for users.
-• Table for posts.
+   - Table for users.
+   - Table for posts.
 ![Firebase Cloud Firestore (Database)](./docs/images/db.JPG)
 <br />
 
-1. Firebase Cloud Messaging (FCM)
-• Send to all users (Broadcast).
-• Send on a certain topic (Initially all users are subscribed to “posts” topic).
+3. Firebase Cloud Messaging (FCM)
+    - Send to all users (Broadcast).
+    - Send on a certain topic (Initially all users are subscribed to “posts” topic).
 ![FCM](./docs/images/fcm.JPG)
 <br />
 
-1. Facebook Developers Console
+4. Facebook Developers Console
 We’ve got 3 test users:
-• mars_hxbmpvv_user@tfbnw.net
-• alexa_lstwxpd_adams@tfbnw.net
-• klara_rwsmrmw_kardic@tfbnw.net
+   - mars_hxbmpvv_user@tfbnw.net
+   - alexa_lstwxpd_adams@tfbnw.net
+   - klara_rwsmrmw_kardic@tfbnw.net
+  
 All have the same password which is “Vorx!123”.
 *(Kindly be noted that the app is in-development mode, so we can only use Facebook authentication through the registered devices on console).*
+
 ![FB Test Users](./docs/images/fb_test_users.JPG)
 <br />
 
@@ -90,8 +98,8 @@ All have the same password which is “Vorx!123”.
 
 ### Authentication Scenario
 
-• The app starts by checking if this user is authenticated or not.
-• If the user is authenticated, the app automatically navigates to the Posts Activity, otherwise, the app navigates to the Authentication Activity, and then user authenticates using any of the available authentication options.
+- The app starts by checking if this user is authenticated or not.
+- If the user is authenticated, the app automatically navigates to the Posts Activity, otherwise, the app navigates to the Authentication Activity, and then user authenticates using any of the available authentication options.
 
 *Google Login*
 ![Google login](./docs/gifs/auth_google.gif)
@@ -101,8 +109,8 @@ All have the same password which is “Vorx!123”.
 
 ### View Feeds Scenario
 
-• The app requests all the existing feeds from the cloud firestore.
-• If there’s available data, the Posts Activity will show cards containing the posts, otherwise, it will display empty feed.
+- The app requests all the existing feeds from the cloud firestore.
+- If there’s available data, the Posts Activity will show cards containing the posts, otherwise, it will display empty feed.
 
 *View feeds and listen to posts*
 ![View feeds](./docs/gifs/read_post.gif)
@@ -120,13 +128,15 @@ All have the same password which is “Vorx!123”.
 ### Corner Cases
 
 The user navigates to the Add Post Activity and tries to add:
-• An empty post.
-• Post with no title.
-• Post with no description.
-• Post with either the title or description is white-spaces.
-The app doesn’t add the post and displays a toast message to the user that clarifies the problem.
 
+- An empty post.
+- Post with no title.
+- Post with no description.
+- Post with either the title or description is white-spaces.
+  
 ![Test Case](./docs/screenshots/testcase_4.png)
+
+The app doesn’t add the post and displays a toast message to the user that clarifies the problem.
 
 ## Links
 
